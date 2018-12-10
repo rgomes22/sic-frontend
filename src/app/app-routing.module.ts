@@ -16,6 +16,11 @@ import { CriarProdutoComponent } from './criar-produto/criar-produto.component';
 
 import {  RestricaoGestaoComponent } from './restricao-gestao/restricao-gestao.component';
 
+import { DimensoesGestaoComponent } from './dimensoes-gestao/dimensoes-gestao.component';
+
+import {  RestricaoEditComponent } from './restricao-edit/restricao-edit.component';
+
+
 
 const routes: Routes = [
   {path: 'catalogo', component : CatalogoComponent},
@@ -29,6 +34,11 @@ const routes: Routes = [
   {path:  'materiais', component : MateriaisComponent},
   {path:  'criar-produto', component : CriarProdutoComponent},
   {path: 'restricao' , component : RestricaoGestaoComponent},
+
+  {path: 'dimensoes', component : DimensoesGestaoComponent},
+
+  {path:'restricao-edicao' , component : RestricaoEditComponent},
+
 ];
 
 @NgModule({

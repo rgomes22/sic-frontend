@@ -4,6 +4,8 @@ import { Observable, of } from 'rxjs';
 import { catchError,map, tap } from 'rxjs/operators';
 
 import { Produto } from './model/Produto';
+import { criarProdutoDTO } from './DTOS/criarProdutoDTO';
+import { produtoPutDTO } from './DTOS/produtoPutDTO';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,7 +21,7 @@ export class ProdutosService {
   //private urlSicCatalogo ='' ; 
   private urlGetProdutos = 'https://sic3df.azurewebsites.net/api/Product';
   private urlPostProduto = 'https://sic3df.azurewebsites.net/api/Product';
-
+  private urlPutProduto = 'https://sic3df.azurewebsites.net/api/Product';
   constructor(private httpClient: HttpClient) { }
 
   getProdutos(): Observable<Produto[]>{
@@ -29,6 +31,15 @@ export class ProdutosService {
     )
 
   };
+
+  putProduct(id:string, produto: produtoPutDTO): Observable<Produto>{
+    const url2 = `${this.urlPutProduto}/${id}`;
+    alert("put url "+url2);
+    return this.httpClient.put<Produto>(url2,produto,httpOptions).pipe(
+      tap(_ => this.log(`put id=${id}`)),
+      catchError(this.handleError<Produto>(`put id=${id}`))
+    );
+  }
 
   getProduto( id: number ): Observable<Produto>{
     const url = `${this.urlGetProdutos}/${id}`;
@@ -41,7 +52,7 @@ export class ProdutosService {
   //it calls HttpClient.post()
   //it expects the server to generates an id for the new product, which it returns 
   //in the Observable<Produto> to the caller.
-  postProduto(produto:Produto): Observable<Produto>{
+  postProduto(produto:criarProdutoDTO): Observable<Produto>{
     return this.httpClient.post<Produto>(this.urlPostProduto,produto,httpOptions).pipe(
       tap((produto:Produto)=> this.log('Produto adicionado')),
       catchError(this.handleError<Produto>('Post produto'))

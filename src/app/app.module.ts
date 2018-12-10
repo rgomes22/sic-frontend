@@ -19,6 +19,11 @@ import { FormsModule } from '@angular/forms';
 import { CriarProdutoComponent } from './criar-produto/criar-produto.component';
 import { RestricaoGestaoComponent } from './restricao-gestao/restricao-gestao.component';
 
+import { DimensoesGestaoComponent } from './dimensoes-gestao/dimensoes-gestao.component';
+
+import { RestricaoEditComponent } from './restricao-edit/restricao-edit.component';
+
+
 
 @NgModule({
   declarations: [
@@ -32,10 +37,12 @@ import { RestricaoGestaoComponent } from './restricao-gestao/restricao-gestao.co
     ProdutoGestaoComponent,
     MateriaisComponent,
     ItemFilhoDetailComponent,
-
     ProductEditComponent,
     CriarProdutoComponent,
-    RestricaoGestaoComponent
+    RestricaoGestaoComponent,
+    DimensoesGestaoComponent,
+    RestricaoEditComponent
+
 
     
   ],

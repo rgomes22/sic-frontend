@@ -45,4 +45,12 @@ export class CategoryServiceService {
     )
 
   }
+
+  getCategoryById(categoryId:number): Observable<Category>{
+    const url2 = `${this.url}/${categoryId}`;
+    return this.http.get<Category>(url2).pipe(
+      tap(_ => this.log('Get Category by Id')),
+      catchError(this.handleError<any>('Get Category by Id'))
+    )
+  }
 }

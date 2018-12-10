@@ -4,6 +4,8 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Restricao } from './model/Restricao';
+import { RestricaoDTO } from './DTOS/restricaoDTO';
+import { restricaoPutDTO } from './DTOS/restricaoPutDTO';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -51,7 +53,7 @@ export class RestricoesService {
   createRestricao(restricao: Restricao): Observable<Restricao>{
 
     return this.http.post<Restricao>(this.urlRes,restricao,httpOptions).pipe(
-      tap((restricao: Restricao)=> this.log('ADICIONADA')),
+      tap((restricao: Restricao)=> alert(`added item ${restricao.restrictionId}`)),
       catchError(this.handleError<Restricao>('ADICIONAR Restriçao'))
     );
   }
@@ -64,6 +66,15 @@ export class RestricoesService {
     return this.http.delete<Restricao>(url, httpOptions).pipe(
       tap(_=> this.log(`Delete da restricao com id=${id}`)),
       catchError(this.handleError<Restricao>('DELETE Restricao'))
+    );
+  }
+
+  //put
+  putRestricao(id:number,restricaoPutDTO:restricaoPutDTO): Observable<Restricao>{
+    const urlPut = `${this.urlRes}/${id}`;
+    return this.http.put<Restricao>(urlPut,restricaoPutDTO,httpOptions).pipe(
+      tap(_=> this.log(`put id=${id}`)),
+      catchError(this.handleError<Restricao>(`put id=${id}`))
     );
   }
 

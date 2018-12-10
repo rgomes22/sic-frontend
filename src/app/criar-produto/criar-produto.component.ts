@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 
 import { ProdutosService } from '../produtos.service';
 import { Produto } from '../model/Produto';
+import { criarProdutoDTO } from '../DTOS/criarProdutoDTO';
 import { Category } from '../model/Category';
 //import { Material } from '../model/Material';
 import { MaterialFinish } from '../model/MaterialFinish';
@@ -16,12 +17,18 @@ import { CategoryServiceService } from '../category-service.service';
 })
 export class CriarProdutoComponent implements OnInit {
   titulo = 'Criar Produtos';
-  produtos: Produto[];
+  produtos: Produto[]=[];
   materiais: number[]=[];
   allMateriaisFinish: MaterialFinish[];
   allCategories: Category[];
   productCategoryId: number;
+  selectedCategoryId:string;
+  selectedMaterialId:string;
 
+
+  productMaterialWithFinish: MaterialFinish[]= [];
+  dimensions: number[]=[];
+  subProducts:Produto[]=[];
 
   constructor( 
     private location: Location,
@@ -46,8 +53,18 @@ export class CriarProdutoComponent implements OnInit {
   }
 
   //post do produto para criar um novo
-  post():void{
+  post(productName:string,productDescription:string):void{
+   
+    if(!productName || !productDescription){
+      alert("Parametros em falta");
+      return;
+    }
+    let productCategory = this.selectedCategoryId;
+    let productMaterialWithFinish = this.productMaterialWithFinish;
+    let dimensions = this.dimensions;
+    let subProducts = this.subProducts;
 
+    this.produtoService.postProduto({productName,productDescription,productCategory} as criarProdutoDTO).subscribe(prod=>{this.produtos.push(prod)});
   }
 
   getMateriais(): void {
@@ -80,7 +97,5 @@ export class CriarProdutoComponent implements OnInit {
     console.log("Id categoria: "+id);
   }
 
-  addDimensions():void{
-    
-  }
+  
 }

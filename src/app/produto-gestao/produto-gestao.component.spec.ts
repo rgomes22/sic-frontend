@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProdutoGestaoComponent } from './produto-gestao.component';
+import { ProdutosService } from '../produtos.service';
 
 describe('ProdutoGestaoComponent', () => {
   let component: ProdutoGestaoComponent;
@@ -8,9 +9,12 @@ describe('ProdutoGestaoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProdutoGestaoComponent ]
-    })
-    .compileComponents();
+      declarations: [ ProdutoGestaoComponent ],
+      providers: [{provide: ProdutosService, useClass: MockProdutoGestaoService}]
+    });
+    component = TestBed.get(ProdutoGestaoComponent);
+
+
   }));
 
   beforeEach(() => {
@@ -19,7 +23,13 @@ describe('ProdutoGestaoComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  /*it('should create', () => {
     expect(component).toBeTruthy();
-  });
+  });*/
+
+  
 });
+
+class MockProdutoGestaoService{
+
+}
