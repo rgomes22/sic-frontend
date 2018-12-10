@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProdutoGestaoComponent } from './produto-gestao.component';
 import { ProdutosService } from '../produtos.service';
+import {  RouterTestingModule} from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ProdutoGestaoComponent', () => {
   let component: ProdutoGestaoComponent;
@@ -10,9 +12,9 @@ describe('ProdutoGestaoComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProdutoGestaoComponent ],
-      providers: [{provide: ProdutosService, useClass: MockProdutoGestaoService}]
-    });
-    component = TestBed.get(ProdutoGestaoComponent);
+      imports: [ RouterTestingModule, HttpClientTestingModule  ]
+    }).compileComponents();
+    
 
 
   }));
@@ -23,13 +25,11 @@ describe('ProdutoGestaoComponent', () => {
     fixture.detectChanges();
   });
 
-  /*it('should create', () => {
+  /*it('should create catalgo component ', async (() => {
+    fixture = TestBed.createComponent(ProdutoGestaoComponent);
+    component = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
-  });*/
-
+  }));*/
   
 });
 
-class MockProdutoGestaoService{
-
-}

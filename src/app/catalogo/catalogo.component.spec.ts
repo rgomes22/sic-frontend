@@ -2,6 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { CatalogoComponent } from './catalogo.component';
 import { By } from '@angular/platform-browser';
+import {
+  RouterTestingModule
+} from '@angular/router/testing';
 
 describe('CatalogoComponent', () => {
   let component: CatalogoComponent;
@@ -12,7 +15,8 @@ describe('CatalogoComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CatalogoComponent ],
-      providers: []
+      providers: [],
+      imports: [ RouterTestingModule ]
     })
     .compileComponents();
   }));
@@ -28,9 +32,9 @@ describe('CatalogoComponent', () => {
 
   });*/
 
-  /*it('should create catalgo component ', async (() => {
+  it('should create catalgo component ', async (() => {
     fixture = TestBed.createComponent(CatalogoComponent);
     component = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
-  }));*/
+  }));
 });

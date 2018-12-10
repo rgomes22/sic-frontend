@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {  RouterTestingModule} from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { ProductEditComponent } from './product-edit.component';
 
@@ -8,7 +10,8 @@ describe('ProductEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductEditComponent ]
+      declarations: [ ProductEditComponent ],
+      imports: [ RouterTestingModule, HttpClientTestingModule  ]
     })
     .compileComponents();
   }));
@@ -19,7 +22,9 @@ describe('ProductEditComponent', () => {
     fixture.detectChanges();
   });
 
-  /*it('should create', () => {
+  it('should create catalgo component ', async (() => {
+    fixture = TestBed.createComponent(ProductEditComponent);
+    component = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
-  });*/
+  }));
 });

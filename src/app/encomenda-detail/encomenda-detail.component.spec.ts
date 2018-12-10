@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {  RouterTestingModule} from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { DebugElement } from '@angular/core';
 import { EncomendaDetailComponent } from './encomenda-detail.component';
 
 describe('EncomendaDetailComponent', () => {
@@ -8,7 +10,8 @@ describe('EncomendaDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EncomendaDetailComponent ]
+      declarations: [ EncomendaDetailComponent ],
+      imports: [ RouterTestingModule, HttpClientTestingModule  ]
     })
     .compileComponents();
   }));
@@ -19,7 +22,9 @@ describe('EncomendaDetailComponent', () => {
     fixture.detectChanges();
   });
 
-  /*it('should create', () => {
+  it('should create catalgo component ', async (() => {
+    fixture = TestBed.createComponent(EncomendaDetailComponent);
+    component = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
-  });*/
+  }));
 });

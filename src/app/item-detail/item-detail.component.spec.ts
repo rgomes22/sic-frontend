@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {  RouterTestingModule} from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { ItemDetailComponent } from './item-detail.component';
 
@@ -8,7 +10,8 @@ describe('ItemDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItemDetailComponent ]
+      declarations: [ ItemDetailComponent ],
+      imports: [ RouterTestingModule, HttpClientTestingModule  ]
     })
     .compileComponents();
   }));
@@ -19,7 +22,9 @@ describe('ItemDetailComponent', () => {
     fixture.detectChanges();
   });
 
-  /*it('should create', () => {
+  it('should create catalgo component ', async (() => {
+    fixture = TestBed.createComponent( ItemDetailComponent );
+    component = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
-  });*/
+  }));
 });

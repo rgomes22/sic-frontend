@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {  RouterTestingModule} from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { EncomendasComponent } from './encomendas.component';
 
@@ -8,7 +10,8 @@ describe('EncomendasComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EncomendasComponent ]
+      declarations: [ EncomendasComponent ],
+      imports: [ RouterTestingModule, HttpClientTestingModule  ]
     })
     .compileComponents();
   }));
@@ -19,7 +22,9 @@ describe('EncomendasComponent', () => {
     fixture.detectChanges();
   });
 
-  /*it('should create', () => {
+  it('should create catalgo component ', async (() => {
+    fixture = TestBed.createComponent(EncomendasComponent);
+    component = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
-  });*/
+  }));
 });
